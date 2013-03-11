@@ -88,7 +88,7 @@ public class ManualSubscriptionOperations {
         req.setA1(requestID);
         req.setA4("1030");
         req.setA8("1234567890123456");
-        req.setB1("4111111111111111");
+        req.setB1("4543130000001116");
         req.setB3("12");
         req.setB4("20");
         req.setB5("123");
@@ -100,8 +100,8 @@ public class ManualSubscriptionOperations {
         //req.setC6("10");
         //req.setC7("London");
         //req.setC8("-");
-        //req.setC9("GB");
-        //req.setC10("n1123");
+        req.setC9("GB");  
+        req.setC10("0000");
         req.setD1("1.1.1.1");
         req.setD2("TESTING");
         return req;

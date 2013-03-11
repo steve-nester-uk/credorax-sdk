@@ -19,6 +19,9 @@ public class SpecialApplications
     public static Request getTestGamingPayTo(String merchantID,String requestID) throws InvalidDataFormat {
         return getStandAloneRequest("30", merchantID, requestID);
     }
+    public static Request getTestCFT(String merchantID,String requestID) throws InvalidDataFormat {
+        return getStandAloneRequest("31", merchantID, requestID);
+    }
     
     public static Request getTestRetrieval(String merchantID,String requestID,String originalRequestID) throws InvalidDataFormat {
         return getRetrievalOperationRequest("101", merchantID,requestID, originalRequestID);
@@ -30,7 +33,7 @@ public class SpecialApplications
         req.setO(opCode);
         req.setA1(requestID);
         req.setA4("1020");
-        req.setB1("4111111111111111");
+        req.setB1("4543130000001116");
         req.setB3("12");
         req.setB4("20");
         req.setB5("123");
@@ -38,6 +41,18 @@ public class SpecialApplications
         req.setC3("John.Smith@example.com");
         req.setD1("1.1.1.1");
         req.setD2("TESTING");
+        
+        if (opCode.equals("31")) {
+            req.setI1("CFT to John Smith");
+            req.setI3("John Smith");
+            req.setI4("1");
+            req.setI5("123 street");
+            req.setI9("London");
+            req.setI10("GB");
+            req.setI11("-");
+            req.setI12("N1 4AB");
+            req.setI13("2"); // CFT Type
+        }
         //i1?
         return req;
     }

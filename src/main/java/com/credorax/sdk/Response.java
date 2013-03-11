@@ -1,6 +1,7 @@
 package com.credorax.sdk;
 
 import com.credorax.sdk.util.AVSResponse;
+import com.credorax.sdk.util.CVVResponse;
 import com.credorax.sdk.util.ResponseCode;
 import com.credorax.sdk.util.ResultCode;
 import java.util.HashMap;
@@ -27,6 +28,7 @@ public class Response extends Object {
     private String z9;
     private String z11;
     private String z13;
+    private String z14;
     private String z100;
     
     private String g1;
@@ -88,6 +90,9 @@ public class Response extends Object {
             }
             if (map.containsKey("z13")) {
                 this.z13 = map.get("z13");
+            }
+            if (map.containsKey("z14")) {
+                this.z14 = map.get("z14");
             }
             if (map.containsKey("z100")) {
                 this.z100 = map.get("z100");
@@ -347,6 +352,9 @@ public class Response extends Object {
             if (this.getZ9() != null) {
                  sb.append("AVS response(z9): ").append("\t").append(this.getZ9()).append(" ").append(AVSResponse.getAVSResponse(this.getZ9())).append("\n");
             }
+            if (this.getZ14() != null) {
+                 sb.append("CVV2 response(z14): ").append("\t").append(this.getZ14()).append(" ").append(CVVResponse.getCVVResponse(this.getZ14())).append("\n");
+            }
         }
         else {
             String resultCodeText = this.getZ3();
@@ -365,5 +373,19 @@ public class Response extends Object {
      */
     public void printResponseOutput() {
         System.out.println(this.toString());
+    }
+
+    /**
+     * @return the z14
+     */
+    public String getZ14() {
+        return z14;
+    }
+
+    /**
+     * @param z14 the z14 to set
+     */
+    public void setZ14(String z14) {
+        this.z14 = z14;
     }
 }

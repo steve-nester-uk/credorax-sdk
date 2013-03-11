@@ -87,7 +87,7 @@ public class AutoSubscriptionOperations{
         req.setA1(requestID);
         req.setA4("1030");
         req.setA8("1234567890123456");
-        req.setB1("4111111111111111");
+        req.setB1("4543130000001116");
         req.setB3("12");
         req.setB4("20");
         req.setB5("123");
@@ -134,7 +134,8 @@ public class AutoSubscriptionOperations{
         req.setD2("TESTING");
         req.setG1(token);
         return req;
-    }private static Request getUpdateSubscriptionRequest(String opCode, String merchantID,String requestID, String token) throws InvalidDataFormat {
+    }
+    private static Request getUpdateSubscriptionRequest(String opCode, String merchantID,String requestID, String token) throws InvalidDataFormat {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);

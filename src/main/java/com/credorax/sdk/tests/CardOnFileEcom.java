@@ -137,7 +137,7 @@ public class CardOnFileEcom {
         req.setO(opCode);
         req.setA1(requestID);
         req.setA4("1030");
-        req.setB1("4111111111111111");
+        req.setB1("4543130000001116");
         req.setB3("12");
         req.setB4("20");
         req.setB5("123");
@@ -177,7 +177,7 @@ public class CardOnFileEcom {
         req.setM(merchantID);
         req.setO(opCode);
         req.setA1(requestID);
-        req.setB1("4111111111111111");
+        req.setB1("4543130000001116");
         req.setB3("12");
         req.setB4("20");
         req.setB5("123");

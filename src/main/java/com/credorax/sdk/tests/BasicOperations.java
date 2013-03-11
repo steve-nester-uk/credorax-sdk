@@ -126,7 +126,7 @@ public class BasicOperations {
         req.setO(opCode);
         req.setA1(requestID);
         req.setA4("1020");
-        req.setB1("4111111111111111");
+        req.setB1("4543130000001116");
         req.setB3("12");
         req.setB4("20");
         req.setB5("123");
@@ -141,7 +141,7 @@ public class BasicOperations {
         req.setM(merchantID);
         req.setO(opCode);
         req.setA1(requestID);
-        req.setA4("2020");
+        req.setA4("1020");
         req.setD1("1.1.1.1");
         req.setD2("TESTING");
         req.setG2(responseID);

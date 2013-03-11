@@ -128,6 +128,12 @@ public class Request extends Object {
     private String i8;
     private String i7;
     
+    private String i9;
+    private String i10;
+    private String i11;
+    private String i12;
+    private String i13;
+    
     private String maskedRequest;
     
     public Request() {
@@ -1592,5 +1598,75 @@ public class Request extends Object {
     public void setMaskedRequest(String maskedRequest)
     {
         this.maskedRequest = maskedRequest;
+    }
+
+    /**
+     * @return the i9
+     */
+    public String getI9() {
+        return i9;
+    }
+
+    /**
+     * @param i9 the i9 to set
+     */
+    public void setI9(String i9) {
+        this.i9 = i9;
+    }
+
+    /**
+     * @return the i10
+     */
+    public String getI10() {
+        return i10;
+    }
+
+    /**
+     * @param i10 the i10 to set
+     */
+    public void setI10(String i10) {
+        this.i10 = i10;
+    }
+
+    /**
+     * @return the i11
+     */
+    public String getI11() {
+        return i11;
+    }
+
+    /**
+     * @param i11 the i11 to set
+     */
+    public void setI11(String i11) {
+        this.i11 = i11;
+    }
+
+    /**
+     * @return the i12
+     */
+    public String getI12() {
+        return i12;
+    }
+
+    /**
+     * @param i12 the i12 to set
+     */
+    public void setI12(String i12) {
+        this.i12 = i12;
+    }
+
+    /**
+     * @return the i13
+     */
+    public String getI13() {
+        return i13;
+    }
+
+    /**
+     * @param i13 the i13 to set
+     */
+    public void setI13(String i13) {
+        this.i13 = i13;
     }
 }

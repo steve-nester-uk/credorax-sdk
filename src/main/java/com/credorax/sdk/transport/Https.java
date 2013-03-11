@@ -11,6 +11,9 @@ import java.net.URL;
 import java.net.URLDecoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLSession;
 
 /**
  * Class which builds and then sends a HTTP over SSL request.
@@ -35,13 +38,14 @@ public class Https extends Object
     public String send(String gatewayURL, String request)
     {
         URL url;
-        HttpURLConnection connection = null;
+        HttpsURLConnection connection = null;
         StringBuilder response = null;
         try
         {
             //Create connection
             url = new URL(gatewayURL);
-            connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpsURLConnection) url.openConnection();
+            
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-Type",
                     "application/x-www-form-urlencoded");
@@ -49,7 +53,13 @@ public class Https extends Object
                     + Integer.toString(request.getBytes().length));
             connection.setDoInput(true);
             connection.setDoOutput(true);
-
+            connection.setHostnameVerifier(new HostnameVerifier()  
+            {        
+                public boolean verify(String hostname, SSLSession session)  
+                {  
+                    return true;  
+                }  
+            }); 
             //Send request
             DataOutputStream wr = new DataOutputStream(
                     connection.getOutputStream());
