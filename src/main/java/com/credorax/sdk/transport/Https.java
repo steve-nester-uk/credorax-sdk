@@ -53,13 +53,13 @@ public class Https extends Object
                     + Integer.toString(request.getBytes().length));
             connection.setDoInput(true);
             connection.setDoOutput(true);
-            connection.setHostnameVerifier(new HostnameVerifier()  
-            {        
-                public boolean verify(String hostname, SSLSession session)  
-                {  
-                    return true;  
-                }  
-            }); 
+//            connection.setHostnameVerifier(new HostnameVerifier()  
+//            {        
+//                public boolean verify(String hostname, SSLSession session)  
+//                {  
+//                    return true;  
+//                }  
+//            }); 
             //Send request
             DataOutputStream wr = new DataOutputStream(
                     connection.getOutputStream());

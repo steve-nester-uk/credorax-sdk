@@ -344,7 +344,7 @@ public class Response extends Object {
             String z6 = this.getZ6();
             String responseCodeDescription = "";
             if (z6 != null) {
-                responseCodeDescription = ResponseCode.getResponseCode(Integer.parseInt(z6));
+                responseCodeDescription = ResponseCode.getResponseCode(z6);
             }
              sb.append("Response Code(z6): ").append("\t").append(z6).append(" ").append(responseCodeDescription).append("\n");
              sb.append("Auth Code(z4): ").append("\t").append("\t").append(this.getZ4()).append("\n");
