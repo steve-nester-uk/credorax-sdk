@@ -529,7 +529,7 @@ public class Request extends Object {
      * @param b5 the b5 to set
      */
     public void setB5(String b5) throws InvalidDataFormat {
-        if ((!this.validateFields) || (b5.matches("[0-9]{3,3}"))) {
+        if ((!this.validateFields) || (b5.matches("[0-9,-]{3,3}"))) {
             this.b5 = b5;
         }
         else {
