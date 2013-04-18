@@ -133,7 +133,6 @@ public class BasicOperations {
         req.setC1("John Smith");
         req.setC3("John.Smith@example.com");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         return req;
     }
     private static Request getReferralRequest(String opCode, String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
@@ -143,7 +142,6 @@ public class BasicOperations {
         req.setA1(requestID);
         req.setA4("1020");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG2(responseID);
         req.setG3(previousAuthCode);
         req.setG4(previousRequestID);

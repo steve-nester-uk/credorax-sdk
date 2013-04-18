@@ -103,7 +103,6 @@ public class ManualSubscriptionOperations {
         req.setC9("GB");  
         req.setC10("0000");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         return req;
     }
     private static Request getUseTokenRequest(String opCode, String merchantID,String requestID, String token) throws InvalidDataFormat {
@@ -113,7 +112,6 @@ public class ManualSubscriptionOperations {
         req.setA1(requestID);
         //req.setA4("2530");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG1(token);
         return req;
     }
@@ -123,7 +121,6 @@ public class ManualSubscriptionOperations {
         req.setO(opCode);
         req.setA1(requestID);
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG1(token);
         req.setG2(responseID);
         req.setG3(previousAuthCode);

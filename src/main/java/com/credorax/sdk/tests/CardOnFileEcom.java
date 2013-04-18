@@ -144,7 +144,6 @@ public class CardOnFileEcom {
         req.setC1("John Smith");
         req.setC3("John.Smith@example.com");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         return req;
     }
     private static Request getUseTokenRequest(String opCode, String merchantID,String requestID, String token) throws InvalidDataFormat {
@@ -154,7 +153,6 @@ public class CardOnFileEcom {
         req.setA1(requestID);
         //req.setA4("2530");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG1(token);
         return req;
     }
@@ -164,7 +162,6 @@ public class CardOnFileEcom {
         req.setO(opCode);
         req.setA1(requestID);
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG1(token);
         req.setG2(responseID);
         req.setG3(previousAuthCode);
@@ -182,7 +179,6 @@ public class CardOnFileEcom {
         req.setB4("20");
         req.setB5("123");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG1(token);
         return req;
     }

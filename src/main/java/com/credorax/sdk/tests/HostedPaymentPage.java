@@ -31,7 +31,6 @@ public class HostedPaymentPage
         req.setC1("John Smith");
         req.setC3("John.Smith@example.com");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         return req;
     }
 }

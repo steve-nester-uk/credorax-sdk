@@ -102,7 +102,6 @@ public class AutoSubscriptionOperations{
         req.setC9("GB");
         req.setC10("n1123");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         StringBuilder subscriptionXML = new StringBuilder();
         subscriptionXML.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
         subscriptionXML.append("<sbscr xmlns=\"http://www.Credorax.com/subscription\">");
@@ -131,7 +130,6 @@ public class AutoSubscriptionOperations{
         req.setA1(requestID);
         //req.setA4("2530");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG1(token);
         return req;
     }
@@ -142,7 +140,6 @@ public class AutoSubscriptionOperations{
         req.setA1(requestID);
         //req.setA4("2530");
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG1(token);
         return req;
     }
@@ -152,7 +149,6 @@ public class AutoSubscriptionOperations{
         req.setO(opCode);
         req.setA1(requestID);
         req.setD1("1.1.1.1");
-        req.setD2("TESTING");
         req.setG1(token);
         req.setG2(responseID);
         req.setG3(previousAuthCode);
