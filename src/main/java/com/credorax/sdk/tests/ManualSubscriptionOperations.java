@@ -112,6 +112,9 @@ public class ManualSubscriptionOperations {
         req.setA1(requestID);
         //req.setA4("2530");
         req.setD1("1.1.1.1");
+        if (opCode.equals("32")) {
+            req.setH7("1");
+        }
         req.setG1(token);
         return req;
     }

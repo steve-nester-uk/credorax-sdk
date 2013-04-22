@@ -85,7 +85,9 @@ public class AutoSubscriptionOperations{
         req.setM(merchantID);
         req.setO(opCode);
         req.setA1(requestID);
-        req.setA4("1030");
+        if (!opCode.equals("20")) {
+            req.setA4("1030");    
+        }
         req.setA8("1234567890123456");
         req.setB1("4543130000001116");
         req.setB3("12");
@@ -94,11 +96,6 @@ public class AutoSubscriptionOperations{
         req.setC1("John Smith");
         req.setC2("999-9999-9999");
         req.setC3("John.Smith@example.com");
-        req.setC4("10");
-        req.setC5("Downing Street");
-        req.setC6("10");
-        req.setC7("London");
-        req.setC8("-");
         req.setC9("GB");
         req.setC10("n1123");
         req.setD1("1.1.1.1");
