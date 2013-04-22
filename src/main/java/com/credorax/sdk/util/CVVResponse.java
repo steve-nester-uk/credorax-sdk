@@ -34,9 +34,6 @@ public class CVVResponse {
             else if (cvvResponse.equals("Y")) {
                 return "CVC1 Incorrect";
             }
-            else if (cvvResponse.equals("R")) {
-                return "CVV2/CVC2 Not sent";
-            }
             else {
                 return "Unrecognised CVV2 Response Code, please check the latest API specification";
             }

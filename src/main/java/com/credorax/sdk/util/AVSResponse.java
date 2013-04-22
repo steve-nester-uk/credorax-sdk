@@ -40,6 +40,9 @@ public class AVSResponse {
             else if (avsResponse.equals("G")) {
                 return "International No Match - Address not verified";
             }
+            else if (avsResponse.equals("I")) {
+                return "Address information not verified";
+            }
             else if (avsResponse.equals("M")) {
                 return "International Full Match - Address and Zip/Postal Code matches";
             }
@@ -65,7 +68,10 @@ public class AVSResponse {
                 return "For US addresses: Full Match - nine-digit Zip Code and Address match.  For addresses outside the US: Full Match - Postal Code and Address match";
             }
             else if (avsResponse.equals("Y")) {
-                return "All digits match";
+                return "Street address and postal code match";
+            }
+            else if (avsResponse.equals("Y")) {
+                return "Postal/ZIP matches; street addres does not match or street address not included in request.";
             }
             else {
                 return "Unrecognised AVS Response Code, please check the latest API specification";

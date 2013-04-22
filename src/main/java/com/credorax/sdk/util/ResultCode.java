@@ -13,6 +13,10 @@ public class ResultCode {
      */
     public static String getResultCode(int resultCode) {
         switch (resultCode) {
+            case -13:
+                return "Transaction must include valid 3D secure data";
+            case -12:
+                return "Card Secure Code has to be present";
             case -11:
                 return "Currency is not supported for the given merchant";
             case -10:
