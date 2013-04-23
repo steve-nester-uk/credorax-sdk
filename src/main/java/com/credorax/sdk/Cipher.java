@@ -61,6 +61,7 @@ public class Cipher extends Object {
 
             StringBuilder b = new StringBuilder();
             for (String value : sorted) {
+                value = value.replaceAll("[\\<\\>\\\"\\'\\(\\)\\\\]", " ").trim();
                 b.append(value);
             }
             b.append(this.getSignKey());

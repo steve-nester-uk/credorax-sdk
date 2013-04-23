@@ -288,7 +288,7 @@ public class Request extends Object {
      * @param a2 the a2 to set
      */
     public void setA2(String a2) throws InvalidDataFormat {
-        if ((!this.validateFields) || (a2.matches("[0-9]"))) {
+        if ((!this.validateFields) || (a2.matches("[0-9]{1,2}"))) {
             this.a2 = a2;
         }
         else {
@@ -420,7 +420,7 @@ public class Request extends Object {
      * @param a8 the a8 to set
      */
     public void setA8(String a8) throws InvalidDataFormat {
-        if ((!this.validateFields) || (a8.matches("[0-9]{1,16}"))) {
+        if ((!this.validateFields) || (a8.matches("^[0-9]{1,16}$"))) {
             this.a8 = a8;
         }
         else {
