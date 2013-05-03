@@ -5,14 +5,14 @@ package com.credorax.sdk;
  * RuntimeException).  Supports the passing of the fieldName and requiredFormat
  * @author Steve Nester
  */
-public class InvalidDataFormat extends Exception {
+public class SDKException extends Exception {
     private String fieldName;
     private String requiredFormat;
     
     /**
      * Class Constructor
      */
-    public InvalidDataFormat() {
+    public SDKException() {
         super();
     }
 

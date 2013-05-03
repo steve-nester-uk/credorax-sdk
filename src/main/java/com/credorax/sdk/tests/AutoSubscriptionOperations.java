@@ -1,6 +1,6 @@
 package com.credorax.sdk.tests;
 
-import com.credorax.sdk.InvalidDataFormat;
+import com.credorax.sdk.SDKException;
 import com.credorax.sdk.Request;
 import com.credorax.sdk.util.Encoding;
 import java.util.Date;
@@ -18,9 +18,9 @@ public class AutoSubscriptionOperations{
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestStartSubscriptionRequest(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestStartSubscriptionRequest(String merchantID,String requestID) throws SDKException {
         return getStartSubscriptionRequest("20", merchantID, requestID);
     }
     /**
@@ -29,9 +29,9 @@ public class AutoSubscriptionOperations{
      * @param requestID
      * @param token
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestCancelSubscriptionRequest(String merchantID,String requestID, String token) throws InvalidDataFormat {
+    public static Request getTestCancelSubscriptionRequest(String merchantID,String requestID, String token) throws SDKException {
         return getCancelSubscriptionRequest("21", merchantID, requestID, token);
     }
     /**
@@ -40,9 +40,9 @@ public class AutoSubscriptionOperations{
      * @param requestID
      * @param token
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestUpdateSubscriptionRequest(String merchantID,String requestID, String token) throws InvalidDataFormat {
+    public static Request getTestUpdateSubscriptionRequest(String merchantID,String requestID, String token) throws SDKException {
         return getUpdateSubscriptionRequest("22", merchantID, requestID, token);
     }
     /**
@@ -50,9 +50,9 @@ public class AutoSubscriptionOperations{
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestStartSubscriptionWithInitialDebitRequest(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestStartSubscriptionWithInitialDebitRequest(String merchantID,String requestID) throws SDKException {
         return getStartSubscriptionRequest("25", merchantID, requestID);
     }
     /**
@@ -60,9 +60,9 @@ public class AutoSubscriptionOperations{
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestStartSubscriptionWithInitialAuthRequest(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestStartSubscriptionWithInitialAuthRequest(String merchantID,String requestID) throws SDKException {
         return getStartSubscriptionRequest("26", merchantID, requestID);
     }
     /**
@@ -74,13 +74,13 @@ public class AutoSubscriptionOperations{
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestStartSubscriptionCaptureRequest(String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestStartSubscriptionCaptureRequest(String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return getReferralRequest("27", merchantID, requestID, token, responseID, previousAuthCode, previousRequestID);
     }
     
-    private static Request getStartSubscriptionRequest(String opCode, String merchantID,String requestID) throws InvalidDataFormat {
+    private static Request getStartSubscriptionRequest(String opCode, String merchantID,String requestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);
@@ -120,7 +120,7 @@ public class AutoSubscriptionOperations{
         req.setH6(Encoding.hexEncode(subscriptionXML.toString()));
         return req;
     }
-    private static Request getCancelSubscriptionRequest(String opCode, String merchantID,String requestID, String token) throws InvalidDataFormat {
+    private static Request getCancelSubscriptionRequest(String opCode, String merchantID,String requestID, String token) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);
@@ -130,17 +130,18 @@ public class AutoSubscriptionOperations{
         req.setG1(token);
         return req;
     }
-    private static Request getUpdateSubscriptionRequest(String opCode, String merchantID,String requestID, String token) throws InvalidDataFormat {
+    private static Request getUpdateSubscriptionRequest(String opCode, String merchantID,String requestID, String token) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);
         req.setA1(requestID);
         //req.setA4("2530");
+        req.setB5("123");
         req.setD1("1.1.1.1");
         req.setG1(token);
         return req;
     }
-    private static Request getReferralRequest(String opCode, String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    private static Request getReferralRequest(String opCode, String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);

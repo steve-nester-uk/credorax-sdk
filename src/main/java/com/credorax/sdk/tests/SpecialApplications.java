@@ -1,6 +1,6 @@
 package com.credorax.sdk.tests;
 
-import com.credorax.sdk.InvalidDataFormat;
+import com.credorax.sdk.SDKException;
 import com.credorax.sdk.Request;
 
 /**
@@ -14,20 +14,20 @@ public class SpecialApplications
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestGamingPayTo(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestGamingPayTo(String merchantID,String requestID) throws SDKException {
         return getStandAloneRequest("30", merchantID, requestID);
     }
-    public static Request getTestCFT(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestCFT(String merchantID,String requestID) throws SDKException {
         return getStandAloneRequest("31", merchantID, requestID);
     }
     
-    public static Request getTestRetrieval(String merchantID,String requestID,String originalRequestID) throws InvalidDataFormat {
+    public static Request getTestRetrieval(String merchantID,String requestID,String originalRequestID) throws SDKException {
         return getRetrievalOperationRequest("101", merchantID,requestID, originalRequestID);
     }
     
-    private static Request getStandAloneRequest(String opCode, String merchantID,String requestID) throws InvalidDataFormat {
+    private static Request getStandAloneRequest(String opCode, String merchantID,String requestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);
@@ -55,7 +55,7 @@ public class SpecialApplications
         }
         return req;
     }
-    private static Request getRetrievalOperationRequest(String opCode, String merchantID, String requestID, String originalRequestID) throws InvalidDataFormat {
+    private static Request getRetrievalOperationRequest(String opCode, String merchantID, String requestID, String originalRequestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);

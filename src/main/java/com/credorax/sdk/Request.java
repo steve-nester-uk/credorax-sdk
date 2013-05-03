@@ -55,12 +55,10 @@ public class Request extends Object {
     private String c3;
     private String c4;
     private String c5;
-    private String c6;
     private String c7;
     private String c8;
     private String c9;
     private String c10;
-//    private String c11;
     
     //Fruad Scrubbing Information
     private String d1;
@@ -68,38 +66,6 @@ public class Request extends Object {
     private String d5;
     private String d6;
     private String d7;
-    
-//    //Customer Contact Details
-//    private String e1;
-//    private String e2;
-//    private String e3;
-//    private String e4;
-//    private String e5;
-//    private String e6;
-//    private String e7;
-//    private String e8;
-//    private String e9;
-//    private String e10;
-//    private String e11;
-//    private String e12;
-//    private String e13;
-//    private String e14;
-//    
-//    //Shipping Contact Details
-//    private String f1;
-//    private String f2;
-//    private String f3;
-//    private String f4;
-//    private String f5;
-//    private String f6;
-//    private String f7;
-//    private String f8;
-//    private String f9;
-//    private String f10;
-//    private String f11;
-//    private String f12;
-//    private String f13;
-//    private String f14;
     
     //Refferal Details
     private String g1;
@@ -140,8 +106,14 @@ public class Request extends Object {
     public Request() {
         super();
     }
+    /**
+     * Overloaded constructor sets the validateFields boolean.
+     * If validateFields is set to false, the field level validation will 
+     * be ignored when setting request parameters.
+     * @param validateFields 
+     */
     public Request(boolean validateFields) {
-        super();
+        this();
         this.validateFields = validateFields;
     }
     /**
@@ -160,10 +132,10 @@ public class Request extends Object {
         String responseStr = new Https().send(gatewayURL, c.createRequest(this));
         this.setMaskedRequest(c.getMaskedRequestStr());
         if (this.getB1() != null) {
-            this.b1 = "xxx";
+            this.b1 = null;
         }
         if (this.getB5() != null) {
-            this.b5 = "xxx";
+            this.b5 = null;
         }
         return new Response(responseStr, this);
     }
@@ -177,12 +149,12 @@ public class Request extends Object {
     /**
      * @param M the m to set
      */
-    public void setM(String M) throws InvalidDataFormat {
+    public void setM(String M) throws SDKException {
         if ((!this.validateFields) || (M.matches("[a-zA-Z0-9_]{3,8}"))) {
             this.M = M;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("M");
             idf.setRequiredFormat("[a-zA-Z0-9_]{3,8}");
             throw idf;
@@ -199,12 +171,12 @@ public class Request extends Object {
     /**
      * @param K the k to set
      */
-    public void setK(String K) throws InvalidDataFormat {
+    public void setK(String K) throws SDKException {
         if ((!this.validateFields) || (K.matches("[a-zA-Z0-9]{1,32}"))) {
             this.K = K;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("K");
             idf.setRequiredFormat("[a-zA-Z0-9]{1,32}");
             throw idf;
@@ -221,12 +193,12 @@ public class Request extends Object {
     /**
      * @param O the o to set
      */
-    public void setO(String O) throws InvalidDataFormat {
+    public void setO(String O) throws SDKException {
         if ((!this.validateFields) || (O.matches("[0-9]{1,3}"))) {
             this.O = O;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("O");
             idf.setRequiredFormat("[0-9]{1,3}");
             throw idf;
@@ -243,12 +215,12 @@ public class Request extends Object {
     /**
      * @param V the v to set
      */
-    public void setV(String V) throws InvalidDataFormat {
+    public void setV(String V) throws SDKException {
         if ((!this.validateFields) || (V.equals("413"))) {
             this.V = V;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("V");
             idf.setRequiredFormat("413");
             throw idf;
@@ -265,12 +237,12 @@ public class Request extends Object {
     /**
      * @param a1 the a1 to set
      */
-    public void setA1(String a1) throws InvalidDataFormat {
+    public void setA1(String a1) throws SDKException {
         if ((!this.validateFields) || (a1.matches("[a-zA-Z0-9]{1,32}"))) {
             this.a1 = a1;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("a1");
             idf.setRequiredFormat("[a-zA-Z0-9]{1,32}");
             throw idf;
@@ -287,12 +259,12 @@ public class Request extends Object {
     /**
      * @param a2 the a2 to set
      */
-    public void setA2(String a2) throws InvalidDataFormat {
+    public void setA2(String a2) throws SDKException {
         if ((!this.validateFields) || (a2.matches("[0-9]{1,2}"))) {
             this.a2 = a2;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("a2");
             idf.setRequiredFormat("[0-9]");
             throw idf;
@@ -309,12 +281,12 @@ public class Request extends Object {
     /**
      * @param a3 the a3 to set
      */
-    public void setA3(String a3) throws InvalidDataFormat {
+    public void setA3(String a3) throws SDKException {
         if ((!this.validateFields) || (a3.matches("[0-1]"))) {
             this.a3 = a3;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("a3");
             idf.setRequiredFormat("[0-1]");
             throw idf;
@@ -331,12 +303,12 @@ public class Request extends Object {
     /**
      * @param a4 the a4 to set
      */
-    public void setA4(String a4) throws InvalidDataFormat {
+    public void setA4(String a4) throws SDKException {
         if ((!this.validateFields) || (a4.matches("[0-9]{1,10}"))) {
             this.a4 = a4;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("a4");
             idf.setRequiredFormat("[0-9]{1,10}");
             throw idf;
@@ -353,12 +325,12 @@ public class Request extends Object {
     /**
      * @param a5 the a5 to set
      */
-    public void setA5(String a5) throws InvalidDataFormat {
+    public void setA5(String a5) throws SDKException {
         if ((!this.validateFields) || (a5.matches("[A-Z]{3}"))) {
             this.a5 = a5;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("a5");
             idf.setRequiredFormat("[A-Z]{3}");
             throw idf;
@@ -375,12 +347,12 @@ public class Request extends Object {
     /**
      * @param a6 the a6 to set
      */
-    public void setA6(String a6) throws InvalidDataFormat {
+    public void setA6(String a6) throws SDKException {
         if ((!this.validateFields) || (a6.matches("[0-9][0-9]([0][0-9]|[1][0-2])([0-2][0-9]|[3][0-1])"))) {
             this.a6 = a6;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("a6");
             idf.setRequiredFormat("[0-9][0-9]([0][0-9]|[1][0-2])([0-2][0-9]|[3][0-1])");
             throw idf;
@@ -397,12 +369,12 @@ public class Request extends Object {
     /**
      * @param a7 the a7 to set
      */
-    public void setA7(String a7) throws InvalidDataFormat {
+    public void setA7(String a7) throws SDKException {
         if ((!this.validateFields) || (a7.matches("([0-1][0-9]|[2][0-3])[0-5][0-9][0-5][0-9]"))) {
             this.a7 = a7;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("a7");
             idf.setRequiredFormat("([0-1][0-9]|[2][0-3])[0-5][0-9][0-5][0-9]");
             throw idf;
@@ -419,12 +391,12 @@ public class Request extends Object {
     /**
      * @param a8 the a8 to set
      */
-    public void setA8(String a8) throws InvalidDataFormat {
+    public void setA8(String a8) throws SDKException {
         if ((!this.validateFields) || (a8.matches("^[0-9]{1,16}$"))) {
             this.a8 = a8;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("a8");
             idf.setRequiredFormat("[0-9]{1,16}");
             throw idf;
@@ -441,12 +413,12 @@ public class Request extends Object {
     /**
      * @param b1 the b1 to set
      */
-    public void setB1(String b1) throws InvalidDataFormat {
+    public void setB1(String b1) throws SDKException {
         if ((!this.validateFields) || (b1.matches("[0-9]{8,19}"))) {
             this.b1 = b1;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("b1");
             idf.setRequiredFormat("[0-9]{8,19}");
             throw idf;
@@ -463,12 +435,12 @@ public class Request extends Object {
     /**
      * @param b2 the b2 to set
      */
-    public void setB2(String b2) throws InvalidDataFormat {
+    public void setB2(String b2) throws SDKException {
         if ((!this.validateFields) || (b2.matches("[0-9]{1,2}"))) {
             this.b2 = b2;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("b2");
             idf.setRequiredFormat("[0-9]{1,2}");
             throw idf;
@@ -485,12 +457,12 @@ public class Request extends Object {
     /**
      * @param b3 the b3 to set
      */
-    public void setB3(String b3) throws InvalidDataFormat {
+    public void setB3(String b3) throws SDKException {
         if ((!this.validateFields) || (b3.matches("[0-9]{2,2}"))) {
             this.b3 = b3;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("b3");
             idf.setRequiredFormat("[0-9]{2,2}");
             throw idf;
@@ -507,12 +479,12 @@ public class Request extends Object {
     /**
      * @param b4 the b4 to set
      */
-    public void setB4(String b4) throws InvalidDataFormat {
+    public void setB4(String b4) throws SDKException {
         if ((!this.validateFields) || (b4.matches("[0-9]{1,2}"))) {
             this.b4 = b4;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("b4");
             idf.setRequiredFormat("[0-9]{1,2}");
             throw idf;
@@ -529,12 +501,12 @@ public class Request extends Object {
     /**
      * @param b5 the b5 to set
      */
-    public void setB5(String b5) throws InvalidDataFormat {
+    public void setB5(String b5) throws SDKException {
         if ((!this.validateFields) || (b5.matches("[0-9,-]{3,3}"))) {
             this.b5 = b5;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("b5");
             idf.setRequiredFormat("[0-9]{3,3}");
             throw idf;
@@ -551,12 +523,12 @@ public class Request extends Object {
     /**
      * @param c1 the c1 to set
      */
-    public void setC1(String c1) throws InvalidDataFormat {
+    public void setC1(String c1) throws SDKException {
         if ((!this.validateFields) || (c1.matches("[a-zA-Z\\s]{5,64}"))) {
             this.c1 = c1;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("c1");
             idf.setRequiredFormat("[a-zA-Z\\s]{5,64}");
             throw idf;
@@ -573,13 +545,13 @@ public class Request extends Object {
     /**
      * @param c2 the c2 to set
      */
-    public void setC2(String c2) throws InvalidDataFormat {
+    public void setC2(String c2) throws SDKException {
         //if (c2.matches("[0-9\\-\\s\\.]{5,32}")) {
         if ((!this.validateFields) || (c2.matches("[0-9\\-]{5,32}"))) {
             this.c2 = c2;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("c2");
             idf.setRequiredFormat("[0-9\\-]{5,32}");
             throw idf;
@@ -596,12 +568,12 @@ public class Request extends Object {
     /**
      * @param c3 the c3 to set
      */
-    public void setC3(String c3) throws InvalidDataFormat {
+    public void setC3(String c3) throws SDKException {
         if ((!this.validateFields) || (c3.matches("^[_a-zA-Z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"))) {
             this.c3 = c3;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("c3");
             idf.setRequiredFormat("^[_a-zA-Z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
             throw idf;
@@ -618,12 +590,12 @@ public class Request extends Object {
     /**
      * @param c4 the c4 to set
      */
-    public void setC4(String c4) throws InvalidDataFormat {
+    public void setC4(String c4) throws SDKException {
         if ((!this.validateFields) || (c4.matches("[a-zA-Z0-9\\s\\-]{1,16}"))) {
             this.c4 = c4;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("c4");
             idf.setRequiredFormat("[a-zA-Z0-9\\s\\-]{1,16}");
             throw idf;
@@ -640,39 +612,16 @@ public class Request extends Object {
     /**
      * @param c5 the c5 to set
      */
-    public void setC5(String c5) throws InvalidDataFormat {
+    public void setC5(String c5) throws SDKException {
         if ((!this.validateFields) || (c5.matches("[a-zA-Z0-9\\s\\-]{4,64}"))) {
             this.c5 = c5;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("c5");
             idf.setRequiredFormat("[a-zA-Z0-9\\s\\-]{4,64}");
             throw idf;
         }
-    }
-
-    /**
-     * @return the c6
-     */
-    public String getC6() {
-        return c6;
-    }
-
-    /**
-     * @param c6 the c6 to set
-     */
-    public void setC6(String c6) throws InvalidDataFormat {
-        if ((!this.validateFields) || (c6.matches("[0-9]{1,16}"))) {
-            this.c6 = c6;
-        }
-        else {
-            InvalidDataFormat idf = new InvalidDataFormat();
-            idf.setFieldName("c6");
-            idf.setRequiredFormat("[0-9]{1,16}");
-            throw idf;
-        }
-        this.c6 = c6;
     }
 
     /**
@@ -685,12 +634,12 @@ public class Request extends Object {
     /**
      * @param c7 the c7 to set
      */
-    public void setC7(String c7) throws InvalidDataFormat {
+    public void setC7(String c7) throws SDKException {
         if ((!this.validateFields) || (c7.matches("[a-zA-Z0-9\\s\\-]{3,32}"))) {
             this.c7 = c7;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("c7");
             idf.setRequiredFormat("[a-zA-Z0-9\\s\\-]{3,32}");
             throw idf;
@@ -707,7 +656,7 @@ public class Request extends Object {
     /**
      * @param c8 the c8 to set
      */
-    public void setC8(String c8) throws InvalidDataFormat {
+    public void setC8(String c8) throws SDKException {
         this.c8 = c8;
     }
 
@@ -721,12 +670,12 @@ public class Request extends Object {
     /**
      * @param c9 the c9 to set
      */
-    public void setC9(String c9) throws InvalidDataFormat {
+    public void setC9(String c9) throws SDKException {
         if ((!this.validateFields) || (c9.matches("[A-Z]{2,2}"))) {
             this.c9 = c9;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("c9");
             idf.setRequiredFormat("[A-Z]{2,2}");
             throw idf;
@@ -743,12 +692,12 @@ public class Request extends Object {
     /**
      * @param c10 the c10 to set
      */
-    public void setC10(String c10) throws InvalidDataFormat {
+    public void setC10(String c10) throws SDKException {
         if ((!this.validateFields) || (c10.matches("[a-zA-Z0-9\\s\\-]{4,15}"))) {
             this.c10 = c10;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("c10");
             idf.setRequiredFormat("[a-zA-Z0-9\\s\\-]{4,15}");
             throw idf;
@@ -765,12 +714,12 @@ public class Request extends Object {
     /**
      * @param d1 the d1 to set
      */
-    public void setD1(String d1) throws InvalidDataFormat {
+    public void setD1(String d1) throws SDKException {
         if ((!this.validateFields) || (d1.matches("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}"))) {
             this.d1 = d1;
         }
         else {
-            InvalidDataFormat idf = new InvalidDataFormat();
+            SDKException idf = new SDKException();
             idf.setFieldName("d1");
             idf.setRequiredFormat("\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}");
             throw idf;
@@ -787,7 +736,7 @@ public class Request extends Object {
     /**
      * @param d4 the d4 to set
      */
-    public void setD4(String d4) throws InvalidDataFormat {
+    public void setD4(String d4) throws SDKException {
         this.d4 = d4;
     }
 
@@ -801,7 +750,7 @@ public class Request extends Object {
     /**
      * @param d5 the d5 to set
      */
-    public void setD5(String d5) throws InvalidDataFormat {
+    public void setD5(String d5) throws SDKException {
         this.d5 = d5;
     }
 
@@ -815,7 +764,7 @@ public class Request extends Object {
     /**
      * @param d6 the d6 to set
      */
-    public void setD6(String d6) throws InvalidDataFormat {
+    public void setD6(String d6) throws SDKException {
         this.d6 = d6;
     }
 
@@ -829,7 +778,7 @@ public class Request extends Object {
     /**
      * @param d7 the d7 to set
      */
-    public void setD7(String d7) throws InvalidDataFormat {
+    public void setD7(String d7) throws SDKException {
         this.d7 = d7;
     }
 
@@ -843,7 +792,7 @@ public class Request extends Object {
     /**
      * @param g1 the g1 to set
      */
-    public void setG1(String g1) throws InvalidDataFormat {
+    public void setG1(String g1) throws SDKException {
         this.g1 = g1;
     }
 
@@ -857,7 +806,7 @@ public class Request extends Object {
     /**
      * @param g2 the g2 to set
      */
-    public void setG2(String g2) throws InvalidDataFormat {
+    public void setG2(String g2) throws SDKException {
         this.g2 = g2;
     }
 
@@ -871,7 +820,7 @@ public class Request extends Object {
     /**
      * @param g3 the g3 to set
      */
-    public void setG3(String g3) throws InvalidDataFormat {
+    public void setG3(String g3) throws SDKException {
         this.g3 = g3;
     }
 
@@ -885,7 +834,7 @@ public class Request extends Object {
     /**
      * @param g4 the g4 to set
      */
-    public void setG4(String g4) throws InvalidDataFormat {
+    public void setG4(String g4) throws SDKException {
         this.g4 = g4;
     }
 
@@ -899,7 +848,7 @@ public class Request extends Object {
     /**
      * @param d2 the d2 to set
      */
-    public void setD2(String d2) throws InvalidDataFormat {
+    public void setD2(String d2) throws SDKException {
         this.d2 = d2;
     }
 
@@ -913,7 +862,7 @@ public class Request extends Object {
     /**
      * @param d3 the d3 to set
      */
-    public void setD3(String d3) throws InvalidDataFormat {
+    public void setD3(String d3) throws SDKException {
         this.d3 = d3;
     }
 
@@ -927,7 +876,7 @@ public class Request extends Object {
     /**
      * @param h1 the h1 to set
      */
-    public void setH1(String h1) throws InvalidDataFormat {
+    public void setH1(String h1) throws SDKException {
         this.h1 = h1;
     }
 
@@ -941,7 +890,7 @@ public class Request extends Object {
     /**
      * @param h2 the h2 to set
      */
-    public void setH2(String h2) throws InvalidDataFormat {
+    public void setH2(String h2) throws SDKException {
         this.h2 = h2;
     }
 
@@ -955,7 +904,7 @@ public class Request extends Object {
     /**
      * @param h3 the h3 to set
      */
-    public void setH3(String h3) throws InvalidDataFormat {
+    public void setH3(String h3) throws SDKException {
         this.h3 = h3;
     }
 
@@ -969,7 +918,7 @@ public class Request extends Object {
     /**
      * @param h4 the h4 to set
      */
-    public void setH4(String h4) throws InvalidDataFormat {
+    public void setH4(String h4) throws SDKException {
         this.h4 = h4;
     }
 
@@ -983,7 +932,7 @@ public class Request extends Object {
     /**
      * @param h5 the h5 to set
      */
-    public void setH5(String h5) throws InvalidDataFormat {
+    public void setH5(String h5) throws SDKException {
         this.h5 = h5;
     }
 
@@ -997,7 +946,7 @@ public class Request extends Object {
     /**
      * @param h6 the h6 to set
      */
-    public void setH6(String h6) throws InvalidDataFormat {
+    public void setH6(String h6) throws SDKException {
         this.h6 = h6;
     }
 
@@ -1011,7 +960,7 @@ public class Request extends Object {
     /**
      * @param h7 the h7 to set
      */
-    public void setH7(String h7) throws InvalidDataFormat {
+    public void setH7(String h7) throws SDKException {
         this.h7 = h7;
     }
 
@@ -1025,7 +974,7 @@ public class Request extends Object {
     /**
      * @param h8 the h8 to set
      */
-    public void setH8(String h8) throws InvalidDataFormat {
+    public void setH8(String h8) throws SDKException {
         this.h8 = h8;
     }
 
@@ -1039,7 +988,7 @@ public class Request extends Object {
     /**
      * @param h9 the h9 to set
      */
-    public void setH9(String h9) throws InvalidDataFormat {
+    public void setH9(String h9) throws SDKException {
         this.h9 = h9;
     }
 
@@ -1053,7 +1002,7 @@ public class Request extends Object {
     /**
      * @param h10 the h10 to set
      */
-    public void setH10(String h10) throws InvalidDataFormat {
+    public void setH10(String h10) throws SDKException {
         this.h10 = h10;
     }
 
@@ -1067,7 +1016,7 @@ public class Request extends Object {
     /**
      * @param i1 the i1 to set
      */
-    public void setI1(String i1) throws InvalidDataFormat {
+    public void setI1(String i1) throws SDKException {
         this.i1 = i1;
     }
 
@@ -1081,7 +1030,7 @@ public class Request extends Object {
     /**
      * @param i2 the i2 to set
      */
-    public void setI2(String i2) throws InvalidDataFormat {
+    public void setI2(String i2) throws SDKException {
         this.i2 = i2;
     }
 
@@ -1095,7 +1044,7 @@ public class Request extends Object {
     /**
      * @param i3 the i3 to set
      */
-    public void setI3(String i3) throws InvalidDataFormat {
+    public void setI3(String i3) throws SDKException {
         this.i3 = i3;
     }
 
@@ -1109,7 +1058,7 @@ public class Request extends Object {
     /**
      * @param i4 the i4 to set
      */
-    public void setI4(String i4) throws InvalidDataFormat {
+    public void setI4(String i4) throws SDKException {
         this.i4 = i4;
     }
 
@@ -1123,7 +1072,7 @@ public class Request extends Object {
     /**
      * @param i5 the i5 to set
      */
-    public void setI5(String i5) throws InvalidDataFormat {
+    public void setI5(String i5) throws SDKException {
         this.i5 = i5;
     }
 
@@ -1137,7 +1086,7 @@ public class Request extends Object {
     /**
      * @param i6 the i6 to set
      */
-    public void setI8(String i8) throws InvalidDataFormat {
+    public void setI8(String i8) throws SDKException {
         this.i8 = i8;
     }
 
@@ -1151,7 +1100,7 @@ public class Request extends Object {
     /**
      * @param i7 the i7 to set
      */
-    public void setI7(String i7) throws InvalidDataFormat {
+    public void setI7(String i7) throws SDKException {
         this.i7 = i7;
     }
 

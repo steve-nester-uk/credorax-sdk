@@ -1,6 +1,6 @@
 package com.credorax.sdk.tests;
 
-import com.credorax.sdk.InvalidDataFormat;
+import com.credorax.sdk.SDKException;
 import com.credorax.sdk.Request;
 
 /**
@@ -16,9 +16,9 @@ public class ManualSubscriptionOperations {
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestStartSubscriptionWithInitialDebit(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestStartSubscriptionWithInitialDebit(String merchantID,String requestID) throws SDKException {
         return getStartSubscriptionRequest("23", merchantID, requestID);
     }
     /**
@@ -26,9 +26,9 @@ public class ManualSubscriptionOperations {
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestStartSubscriptionWithInitialAuth(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestStartSubscriptionWithInitialAuth(String merchantID,String requestID) throws SDKException {
         return getStartSubscriptionRequest("28", merchantID, requestID);
     }
     /**
@@ -37,9 +37,9 @@ public class ManualSubscriptionOperations {
      * @param requestID
      * @param token
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestSubscriptionDebitCycle(String merchantID,String requestID, String token) throws InvalidDataFormat {
+    public static Request getTestSubscriptionDebitCycle(String merchantID,String requestID, String token) throws SDKException {
         return getUseTokenRequest("24", merchantID, requestID, token);
     }
     /**
@@ -48,9 +48,9 @@ public class ManualSubscriptionOperations {
      * @param requestID
      * @param token
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestSubscriptionDebitCycleAuthStep(String merchantID,String requestID, String token) throws InvalidDataFormat {
+    public static Request getTestSubscriptionDebitCycleAuthStep(String merchantID,String requestID, String token) throws SDKException {
         return getUseTokenRequest("32", merchantID, requestID, token);
     }
     /**
@@ -62,9 +62,9 @@ public class ManualSubscriptionOperations {
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestStartSubscriptionCapture(String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestStartSubscriptionCapture(String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return getReferralRequest("29", merchantID, requestID, token, responseID, previousAuthCode, previousRequestID);
     }
     /**
@@ -76,12 +76,12 @@ public class ManualSubscriptionOperations {
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestSubscriptionDebitCycleCapture(String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestSubscriptionDebitCycleCapture(String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return getReferralRequest("33", merchantID, requestID, token, responseID, previousAuthCode, previousRequestID);
     }
-    private static Request getStartSubscriptionRequest(String opCode, String merchantID,String requestID) throws InvalidDataFormat {
+    private static Request getStartSubscriptionRequest(String opCode, String merchantID,String requestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);
@@ -105,7 +105,7 @@ public class ManualSubscriptionOperations {
         req.setD1("1.1.1.1");
         return req;
     }
-    private static Request getUseTokenRequest(String opCode, String merchantID,String requestID, String token) throws InvalidDataFormat {
+    private static Request getUseTokenRequest(String opCode, String merchantID,String requestID, String token) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);
@@ -118,7 +118,7 @@ public class ManualSubscriptionOperations {
         req.setG1(token);
         return req;
     }
-    private static Request getReferralRequest(String opCode, String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    private static Request getReferralRequest(String opCode, String merchantID,String requestID, String token, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);

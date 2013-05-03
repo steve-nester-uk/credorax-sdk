@@ -9,6 +9,8 @@ import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.net.ssl.HostnameVerifier;
@@ -22,8 +24,21 @@ import javax.net.ssl.SSLSession;
  */
 public class Https extends Object 
 {
+    private final static Logger LOGGER = Logger.getLogger(Https.class.getName());
+    
+    private Boolean outputHTTPHeaders = false;
     public Https() {
         super();
+    }
+    /**
+     * Constructor which includes a variable to set outputHTTPHeaders.
+     * When outputHTTPHeaders is true, the HTTPHeaders will be returned
+     * after calling the send(..) method.
+     * @param outputHTTPHeaders 
+     */
+    public Https(Boolean outputHTTPHeaders) {
+        super();
+        this.outputHTTPHeaders = outputHTTPHeaders;
     }
     /**
      * Method builds a HTTPS POST request with Content-Type
@@ -33,7 +48,6 @@ public class Https extends Object
      * @param request       the form-urlencoded String with the request parameters,
      *                      which is sent in the payload/body of the HTTP request
      * @return              URLdecoded (java.net.URLDecoder) response String
-     * @throws IOException  if HTTP response code is not '200 - OK'
      */
     public String send(String gatewayURL, String request)
     {
@@ -54,11 +68,12 @@ public class Https extends Object
             connection.setDoInput(true);
             connection.setDoOutput(true);
             connection.setHostnameVerifier(new HostnameVerifier()  
-            {        
+            {   
+                //Should be removed in production system.
                 public boolean verify(String hostname, SSLSession session)  
                 {  
                     return true;  
-                }  
+                }
             }); 
             //Send request
             DataOutputStream wr = new DataOutputStream(
@@ -67,13 +82,17 @@ public class Https extends Object
             wr.flush();
             wr.close();
 
-            //Get Response
+            
+            //Get HTTP Response
             if (connection.getResponseCode() == HttpURLConnection.HTTP_OK)
-            {
+            {  
                 InputStream is = connection.getInputStream();
                 BufferedReader rd = new BufferedReader(new InputStreamReader(is));
                 String line;
                 response = new StringBuilder();
+                if (outputHTTPHeaders) {
+                    response.append(getHeaders(connection));
+                }
                 while ((line = rd.readLine()) != null)
                 {
                     response.append(line);
@@ -84,13 +103,18 @@ public class Https extends Object
             }
             else
             {
-                throw new IOException("Received HTTP response code: " + connection.getResponseCode() + " - " 
-                        + Https.httpResponseCode(connection.getResponseCode()));
+                if (outputHTTPHeaders) {
+                    response.append(getHeaders(connection));
+                }
+                response.append("Received HTTP response code: ");
+                response.append(connection.getResponseCode());
+                response.append(" - ");
+                response.append(Https.httpResponseCode(connection.getResponseCode()));
             }
         }
-        catch (Exception e)
+        catch (IOException e)
         {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, e.getMessage());
         }
         finally
         {
@@ -108,88 +132,26 @@ public class Https extends Object
         }
         catch (UnsupportedEncodingException ex)
         {
-            Logger.getLogger(Https.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.log(Level.SEVERE, null, ex);
             return null;
         }
     }
-//    /**
-//     * Method builds a HTTPS POST request
-//     *
-//     * @param gatewayURL    the URL to which the POST request should be sent
-//     * @param request       the form-urlencoded String with the request parameters,
-//     *                      which is sent in the payload/body of the HTTP request
-//     * @param contentType   the Content-Type sent in the HTTP request
-//     * @return              URLdecoded (java.net.URLDecoder) response String
-//     * @throws IOException  if HTTP response code is not '200 - OK'
-//     */
-//    public String send(String gatewayURL, String request, String contentType)
-//    {
-//        URL url;
-//        HttpURLConnection connection = null;
-//        StringBuilder response = null;
-//        try
-//        {
-//            //Create connection
-//            url = new URL(gatewayURL);
-//            connection = (HttpURLConnection) url.openConnection();
-//            connection.setRequestMethod("POST");
-//            connection.setRequestProperty("Content-Type",contentType);
-//            connection.setRequestProperty("Content-Length", ""
-//                    + Integer.toString(request.getBytes().length));
-//            connection.setDoInput(true);
-//            connection.setDoOutput(true);
-//
-//            //Send request
-//            DataOutputStream wr = new DataOutputStream(
-//                    connection.getOutputStream());
-//            wr.writeBytes(request);
-//            wr.flush();
-//            wr.close();
-//
-//            //Get Response
-//            if (connection.getResponseCode() == HttpURLConnection.HTTP_OK)
-//            {
-//                InputStream is = connection.getInputStream();
-//                BufferedReader rd = new BufferedReader(new InputStreamReader(is));
-//                String line;
-//                response = new StringBuilder();
-//                while ((line = rd.readLine()) != null)
-//                {
-//                    response.append(line);
-//                    response.append('\r');
-//                }
-//                rd.close();
-//            }
-//            else
-//            {
-//                throw new IOException("Received HTTP response code: " + connection.getResponseCode() + " - " + Https.httpResponseCode(
-//                        connection.getResponseCode()));
-//            }
-//        }
-//        catch (Exception e)
-//        {
-//            e.printStackTrace();
-//        }
-//        finally
-//        {
-//            if (connection != null)
-//            {
-//                connection.disconnect();
-//            }
-//        }
-//        try
-//        {
-//            if (response == null) {
-//                return null;
-//            }
-//            return URLDecoder.decode(response.toString(), "UTF-8");
-//        }
-//        catch (UnsupportedEncodingException ex)
-//        {
-//            Logger.getLogger(Https.class.getName()).log(Level.SEVERE, null, ex);
-//            return null;
-//        }
-//    }
+    
+    private String getHeaders(HttpsURLConnection connection) {
+        StringBuilder response = new StringBuilder();
+        if (connection.getHeaderFields() != null) {
+            Map<String, List<String>> header = connection.getHeaderFields();
+            for (String key : header.keySet()) {
+                response.append(key);
+                response.append(" : ");
+                for (String value : header.get(key)) {
+                    response.append(value);
+                }
+                response.append("\r");
+            }
+        }
+        return response.toString();
+    }
 
     private static String httpResponseCode(int responseCode)
     {

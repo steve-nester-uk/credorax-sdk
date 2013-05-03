@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  * signature key
  * @author Steve Nester 
  */
-public class Cipher extends Object {
+class Cipher extends Object {
     private String signKey;
     private String maskedRequestStr;
     
@@ -34,7 +34,7 @@ public class Cipher extends Object {
     protected String createRequest(Request req) {
         String request = this.getSortedParams(req.getParams());
         this.setMaskedRequestStr(request);
-        return request;
+        return request + "&";
     }
     
     private String getSortedParams(Map<String, String> map){
@@ -101,7 +101,7 @@ public class Cipher extends Object {
     /**
      * @return the maskedRequestStr
      */
-    public String getMaskedRequestStr()
+    protected String getMaskedRequestStr()
     {
         return maskedRequestStr;
     }

@@ -108,208 +108,89 @@ public class Response extends Object {
     public Request getRequest() {
         return request;
     }
-
-    /**
-     * @param request the request to set
-     */
-    public void setRequest(Request request) {
-        this.request = request;
-    }
-
     /**
      * @return the T
      */
     public String getT() {
         return T;
     }
-
-    /**
-     * @param T the T to set
-     */
-    public void setT(String T) {
-        this.T = T;
-    }
-
     /**
      * @return the z1
      */
     public String getZ1() {
         return z1;
     }
-
-    /**
-     * @param z1 the z1 to set
-     */
-    public void setZ1(String z1) {
-        this.z1 = z1;
-    }
-
     /**
      * @return the z2
      */
     public String getZ2() {
         return z2;
     }
-
-    /**
-     * @param z2 the z2 to set
-     */
-    public void setZ2(String z2) {
-        this.z2 = z2;
-    }
-
     /**
      * @return the z3
      */
     public String getZ3() {
         return z3;
     }
-
-    /**
-     * @param z3 the z3 to set
-     */
-    public void setZ3(String z3) {
-        this.z3 = z3;
-    }
-
     /**
      * @return the z4
      */
     public String getZ4() {
         return z4;
     }
-
-    /**
-     * @param z4 the z4 to set
-     */
-    public void setZ4(String z4) {
-        this.z4 = z4;
-    }
-
     /**
      * @return the z5
      */
     public String getZ5() {
         return z5;
     }
-
-    /**
-     * @param z5 the z5 to set
-     */
-    public void setZ5(String z5) {
-        this.z5 = z5;
-    }
-
     /**
      * @return the z6
      */
     public String getZ6() {
         return z6;
     }
-
-    /**
-     * @param z6 the z6 to set
-     */
-    public void setZ6(String z6) {
-        this.z6 = z6;
-    }
-
     /**
      * @return the z7
      */
     public String getZ7() {
         return z7;
     }
-
-    /**
-     * @param z7 the z7 to set
-     */
-    public void setZ7(String z7) {
-        this.z7 = z7;
-    }
-
     /**
      * @return the z8
      */
     public String getZ8() {
         return z8;
     }
-
-    /**
-     * @param z8 the z8 to set
-     */
-    public void setZ8(String z8) {
-        this.z8 = z8;
-    }
-
     /**
      * @return the z9
      */
     public String getZ9() {
         return z9;
     }
-
-    /**
-     * @param z9 the z9 to set
-     */
-    public void setZ9(String z9) {
-        this.z9 = z9;
-    }
-
     /**
      * @return the z11
      */
     public String getZ11() {
         return z11;
     }
-
-    /**
-     * @param z11 the z11 to set
-     */
-    public void setZ11(String z11) {
-        this.z11 = z11;
-    }
-
     /**
      * @return the z13
      */
     public String getZ13() {
         return z13;
     }
-
-    /**
-     * @param z13 the z13 to set
-     */
-    public void setZ13(String z13) {
-        this.z13 = z13;
-    }
-
     /**
      * @return the z100
      */
     public String getZ100() {
         return z100;
     }
-
-    /**
-     * @param z100 the z100 to set
-     */
-    public void setZ100(String z100) {
-        this.z100 = z100;
-    }
-
     /**
      * @return the g1
      */
     public String getG1() {
         return g1;
-    }
-
-    /**
-     * @param g1 the g1 to set
-     */
-    public void setG1(String g1) {
-        this.g1 = g1;
     }
     /**
      * @return the full response string from the API request
@@ -326,7 +207,7 @@ public class Response extends Object {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("Request: ").append("\t").append("\t").append(this.getRequest().getMaskedRequest()).append("\n");
-        sb.append("Response: ").append("\t").append("\t").append(this.getResponseStr()).append("\n");
+        sb.append("Response: ").append("\t").append("\t").append(this.getResponseStr().replace("\r", "\r\t\t\t")).append("\n");
         String time = this.getT();
         if (time != null) {
             sb.append("Response Time(T): ").append("\t").append(time).append("\n");

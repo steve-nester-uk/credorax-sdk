@@ -1,6 +1,6 @@
 package com.credorax.sdk.tests;
 
-import com.credorax.sdk.InvalidDataFormat;
+import com.credorax.sdk.SDKException;
 import com.credorax.sdk.Request;
 
 /**
@@ -16,9 +16,9 @@ public class BasicOperations {
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestSaleRequest(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestSaleRequest(String merchantID,String requestID) throws SDKException {
         return getStandAloneRequest("1", merchantID, requestID);
     }
     /**
@@ -26,9 +26,9 @@ public class BasicOperations {
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestAuthOnlyRequest(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestAuthOnlyRequest(String merchantID,String requestID) throws SDKException {
         return getStandAloneRequest("2", merchantID, requestID);
     }
     /**
@@ -39,9 +39,9 @@ public class BasicOperations {
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestCaptureRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestCaptureRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return BasicOperations.getReferralRequest("3", merchantID, requestID, responseID, previousAuthCode, previousRequestID);
     }
     /**
@@ -52,9 +52,9 @@ public class BasicOperations {
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestAuthVoidRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestAuthVoidRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return BasicOperations.getReferralRequest("4", merchantID, requestID, responseID, previousAuthCode, previousRequestID);
     }
     /**
@@ -65,9 +65,9 @@ public class BasicOperations {
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestReferralCreditRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestReferralCreditRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return BasicOperations.getReferralRequest("5", merchantID, requestID, responseID, previousAuthCode, previousRequestID);
     }
     /**
@@ -75,9 +75,9 @@ public class BasicOperations {
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestIndependentCreditRequest(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestIndependentCreditRequest(String merchantID,String requestID) throws SDKException {
         return getStandAloneRequest("6", merchantID, requestID);
     }
     /**
@@ -88,9 +88,9 @@ public class BasicOperations {
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestSaleVoidRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestSaleVoidRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return getReferralRequest("7", merchantID, requestID, responseID, previousAuthCode, previousRequestID);
     }
     /**
@@ -101,9 +101,9 @@ public class BasicOperations {
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestRefundVoidRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestRefundVoidRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return getReferralRequest("8", merchantID, requestID, responseID, previousAuthCode, previousRequestID);
     }
     /**
@@ -114,13 +114,13 @@ public class BasicOperations {
      * @param previousAuthCode
      * @param previousRequestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestCaptureVoidRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    public static Request getTestCaptureVoidRequest(String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         return getReferralRequest("9", merchantID, requestID, responseID, previousAuthCode, previousRequestID);
     }
     
-    private static Request getStandAloneRequest(String opCode, String merchantID,String requestID) throws InvalidDataFormat {
+    private static Request getStandAloneRequest(String opCode, String merchantID,String requestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);
@@ -135,7 +135,7 @@ public class BasicOperations {
         req.setD1("1.1.1.1");
         return req;
     }
-    private static Request getReferralRequest(String opCode, String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws InvalidDataFormat {
+    private static Request getReferralRequest(String opCode, String merchantID,String requestID, String responseID, String previousAuthCode, String previousRequestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);

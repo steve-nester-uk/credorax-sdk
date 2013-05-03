@@ -1,6 +1,6 @@
 package com.credorax.sdk.tests;
 
-import com.credorax.sdk.InvalidDataFormat;
+import com.credorax.sdk.SDKException;
 import com.credorax.sdk.Request;
 
 /**
@@ -17,12 +17,12 @@ public class HostedPaymentPage
      * @param merchantID
      * @param requestID
      * @return              Request object with minimum required fields for operation
-     * @throws InvalidDataFormat 
+     * @throws SDKException 
      */
-    public static Request getTestHPPRequest(String merchantID,String requestID) throws InvalidDataFormat {
+    public static Request getTestHPPRequest(String merchantID,String requestID) throws SDKException {
         return getStandAloneRequest("1", merchantID, requestID);
     }
-    private static Request getStandAloneRequest(String opCode, String merchantID,String requestID) throws InvalidDataFormat {
+    private static Request getStandAloneRequest(String opCode, String merchantID,String requestID) throws SDKException {
         Request req = new Request();
         req.setM(merchantID);
         req.setO(opCode);
